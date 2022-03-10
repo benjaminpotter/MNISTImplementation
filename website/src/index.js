@@ -135,8 +135,7 @@ class Predictor extends React.Component {
     this.setState({display: Array(28).fill(0).map(x => Array(28).fill(0))});
   }
 
-  componentDidUpdate() {
-
+  sendPredictionRequest() {
     const request = {
       method: "POST",
       mode: "same-origin",
@@ -159,6 +158,10 @@ class Predictor extends React.Component {
       })
       .then(text => console.log(text))
       .catch(err => console.log(err));
+  }
+
+  componentDidMount() {
+    setInterval(this.sendPredictionRequest, 1000);
   }
 
   render() {
