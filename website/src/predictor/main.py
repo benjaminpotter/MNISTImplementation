@@ -2,6 +2,7 @@ from flask import Flask, request
 from json import loads
 import numpy as np
 import tensorflow as tf
+import matplotlib
 
 app = Flask(__name__)
 
@@ -14,7 +15,11 @@ def predict():
 
   # do the prediction logic here
   # the function should return the prediction made by the algorithm
-  
+  for x in range(len(display)):
+    for y in range(len(display[x])):
+        spaces = 3 - len(str(display[x][y]))
+        print(display[x][y], end=' ' * spaces )
+
   prediction = np.argmax(model.predict([display]))
 
   return str(prediction)
