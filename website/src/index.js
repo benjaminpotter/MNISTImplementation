@@ -156,12 +156,12 @@ class Predictor extends React.Component {
       .then(blob => {
         return blob.text();
       })
-      .then(text => console.log(text))
+      .then(text => console.log(this.setState({prediction: text})))
       .catch(err => console.log(err));
   }
 
   componentDidMount() {
-    setInterval(this.sendPredictionRequest, 1000);
+    setInterval(this.sendPredictionRequest.bind(this), 1000);
   }
 
   render() {
