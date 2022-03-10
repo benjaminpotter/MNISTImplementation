@@ -156,7 +156,7 @@ class Predictor extends React.Component {
       .then(blob => {
         return blob.text();
       })
-      .then(text => console.log(this.setState({prediction: text})))
+      .then(text => this.setState({prediction: text}))
       .catch(err => console.log(err));
   }
 

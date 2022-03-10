@@ -1,10 +1,10 @@
 from flask import Flask, request
 from json import loads, dumps
 import numpy as np
-import tensorflow as tf
+#import tensorflow as tf
 
 from random import randint # TEMPORARY
-model = tf.keras.models.load_model('./digitClassifier.model')
+#model = tf.keras.models.load_model('./digitClassifier.model')
 
 
 app = Flask(__name__)
@@ -18,7 +18,7 @@ def predict():
   # do the prediction logic here
   # the function should return the prediction made by the algorithm
   
-  prediction = np.argmax(model.predict([display]))
+  prediction = 0 #np.argmax(model.predict([display]))
 
   return str(prediction)
 
