@@ -86,18 +86,31 @@ class InputDisplay extends React.Component {
   }
 }
 
-
 class SettingDisplay extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.settingsRef = React.createRef();
+  }
+    
   render() {
     return (
       <div>
         <h2>Settings</h2>
-        <ul style={{listStyle: "none", padding: 0}}>
+        {/* <ul style={{listStyle: "none", padding: 0}}>
           <li><input name="algor-type" type="radio"/> Convolutional Neural Net</li>
           <li><input name="algor-type" type="radio"/> k-Nearest Neighbour</li>
           <li><input name="algor-type" type="radio"/> Support Vector Machine</li>
           <li><input name="algor-type" type="radio"/> <strong>Weighted Vote</strong></li>
-        </ul>
+        </ul> */}
+
+        <label>Prediction Model:</label> <br/>
+        <select ref={this.settingsRef} value={this.props.currentSetting} onChange={e => this.props.onSettingsChanged(this.settingsRef.value)}>
+          <option value="0">Convolutional Neural Net</option>
+          <option value="1">k-Nearest Neighbour</option>
+          <option value="2">Support Vector Machine</option>
+          <option value="3">Weighted Vote</option>
+        </select>
       </div>
     );
   }
@@ -123,12 +136,17 @@ class Predictor extends React.Component {
     super(props);
     this.state = {
       prediction: 0,
+      settings: 0, // integer from 0-3
       display: Array(28).fill(0).map(x => Array(28).fill(0)),
     };
   }
 
   onUserDrew(updatedDisplay) {
     this.setState({display: updatedDisplay});
+  }
+
+  onSettingsChanged(updatedSettings) {
+    this.setState({settings: updatedSettings});
   }
 
   handleClear(e) {
@@ -143,13 +161,15 @@ class Predictor extends React.Component {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(this.state.display)
+      body: JSON.stringify({
+        settings: this.state.settings,
+        display: this.state.display})
     }
 
     fetch("/predict", request)
       .then(response => {
         if(!response.ok) 
-          throw new Error("Failed to get prediction from predictor API.");
+          return; //throw new Error("Failed to get prediction from predictor API.");
 
         return response.blob();
       })
@@ -174,7 +194,7 @@ class Predictor extends React.Component {
     return (
       <div style={applicationStyle}>
         <div>
-        <SettingDisplay />
+        <SettingDisplay currentSetting={this.state.settings} onSettingsChanged={this.onSettingsChanged.bind(this)} />
         <PredictionDisplay prediction={this.state.prediction} />
         </div>
         <InputDisplay display={this.state.display} onUserDrew={this.onUserDrew.bind(this)} handleClear={this.handleClear.bind(this)}/>

@@ -1,26 +1,24 @@
 from flask import Flask, request
-from json import loads, dumps
+from json import loads
 import numpy as np
-#import tensorflow as tf
-
-from random import randint # TEMPORARY
-#model = tf.keras.models.load_model('./digitClassifier.model')
-
+import tensorflow as tf
 
 app = Flask(__name__)
 
 @app.route("/predict", methods=["GET", "POST"])
 def predict():
-  
+  data = loads(request.data)
 
-  display = loads(request.data) # display -> a 2d array of all pixel values
+  settings = data["settings"] # settings is an int between 0-3
+  display = data["display"] # display is the 2d array from before
 
   # do the prediction logic here
   # the function should return the prediction made by the algorithm
   
-  prediction = 0 #np.argmax(model.predict([display]))
+  prediction = np.argmax(model.predict([display]))
 
   return str(prediction)
 
 if __name__ == "__main__":
+  model = tf.keras.models.load_model('./digitClassifier.model')
   app.run(port=5000)
