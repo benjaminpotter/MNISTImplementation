@@ -3,11 +3,13 @@ This project was made for Queen's University APSC 103. It is capable of recogniz
 
 ## Starting the Application
 
-### `npm start`
+### `npm run front`
+This will start the react development server. The app should automatically open in a new tab.
 
-This runs the react app dev server (which we are using in production). Your browser should open to the homepage but if not use the link below:
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### `npm run back`
+This will start the python prediction API. Make sure you have the necessary dependencies installed (see Dependencies below).
 
-###  `python website/src/predictor/main.py`
 
-This starts the backend python predictor API.
+## Dependencies
+ReactJS and NodeJS are required to run the front end app.
+Python requires Tensorflow, Pickle, Flask and others. See website/src/predictor/main.py for more information.

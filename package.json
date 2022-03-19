@@ -1,0 +1,21 @@
+{
+  "name": "mnistimplementation",
+  "version": "1.0.0",
+  "description": "Simple web app to display MNIST prediction models.",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "front": "cd website && npm start",
+    "back": "cd website/src/predictor && python main.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benjaminpotter/MNISTImplementation.git"
+  },
+  "author": "Benjamin Potter and Adam Holan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benjaminpotter/MNISTImplementation/issues"
+  },
+  "homepage": "https://github.com/benjaminpotter/MNISTImplementation#readme"
+}
