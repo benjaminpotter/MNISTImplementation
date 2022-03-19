@@ -45,5 +45,9 @@ def predict():
 if __name__ == "__main__":
   SVM = tf.keras.models.load_model('./digitClassifier.model')
   CNN = tf.keras.models.load_model('CNN')
+<<<<<<< HEAD
   KNN = pickle.load(open('KNN', 'rb'))
+=======
+  KNN = pickle.load(open('KNN.model', 'rb'))
+>>>>>>> ed21518703d73188a5198076b19a0dca8bad50c9
   app.run(port=5000)
