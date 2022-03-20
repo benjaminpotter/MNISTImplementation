@@ -105,7 +105,7 @@ class SettingDisplay extends React.Component {
         </ul> */}
 
         <label>Prediction Model:</label> <br/>
-        <select ref={this.settingsRef} value={this.props.currentSetting} onChange={e => this.props.onSettingsChanged(this.settingsRef.value)}>
+        <select ref={this.settingsRef} value={this.props.currentSetting} onChange={e => this.props.onSettingsChanged(this.settingsRef.current.selectedIndex)}>
           <option value="0">Convolutional Neural Net</option>
           <option value="1">k-Nearest Neighbour</option>
           <option value="2">Support Vector Machine</option>

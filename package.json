@@ -6,7 +6,7 @@
   "scripts": {
     "test": "",
     "front": "cd website && npm start",
-    "back": "cd website/src/predictor && python main.py"
+    "back": "cd website/src/predictor && python3 main.py"
   },
   "repository": {
     "type": "git",
